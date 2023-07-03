@@ -76,4 +76,20 @@ class StudentController extends Controller
             ], 404);
         }
     }
+
+    public function edit($id)
+    {
+        $sudent = Student::find($id);
+        if ($sudent) {
+            return response()->json([
+                "status" => 200,
+                "student" => $sudent,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'No Student Found!'
+            ], 404);
+        }
+    }
 }
