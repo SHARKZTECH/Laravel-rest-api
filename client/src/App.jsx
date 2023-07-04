@@ -3,6 +3,7 @@ import './App.css'
 import { DarkThemeToggle, Flowbite } from 'flowbite-react';
 import Header from './components/Header';
 import Students from './components/Students';
+import RegisterPage from './pages/RegisterPage';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Header/>
       <DarkThemeToggle />
       <Students/>
+      <RegisterPage/>
     </Flowbite>
     </>
   )
