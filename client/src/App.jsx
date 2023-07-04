@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import { DarkThemeToggle, Flowbite } from 'flowbite-react';
+import Header from './components/Header';
+import Students from './components/Students';
 
 
 function App() {
@@ -8,8 +10,10 @@ function App() {
 
   return (
     <>
-    <Flowbite>
+    <Flowbite className='w-100'>
+      <Header/>
       <DarkThemeToggle />
+      <Students/>
     </Flowbite>
     </>
   )
