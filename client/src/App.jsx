@@ -4,6 +4,7 @@ import { DarkThemeToggle, Flowbite } from 'flowbite-react';
 import Header from './components/Header';
 import Students from './components/Students';
 import RegisterPage from './pages/RegisterPage';
+import UpdateStudent from './components/UpdateStudent';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <DarkThemeToggle />
       <Students/>
       <RegisterPage/>
+      <UpdateStudent/>
     </Flowbite>
     </>
   )
