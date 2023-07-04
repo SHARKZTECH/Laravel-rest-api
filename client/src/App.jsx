@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Students from './components/Students';
 import RegisterPage from './pages/RegisterPage';
 import UpdateStudent from './components/UpdateStudent';
+import FooterComponent from './components/FooterComponent';
 
 
 function App() {
@@ -12,12 +13,13 @@ function App() {
 
   return (
     <>
-    <Flowbite className='w-100'>
+    <Flowbite className='w-full'>
       <Header/>
       <DarkThemeToggle />
       <Students/>
       <RegisterPage/>
       <UpdateStudent/>
+      <FooterComponent/>
     </Flowbite>
     </>
   )
