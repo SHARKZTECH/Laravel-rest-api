@@ -1,38 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Card, Label, TextInput, Button } from 'flowbite-react';
+import { contextApi } from '../contextApi/contextApi';
 
 const LoginPage = () => {
-  const initialFormData = {
-    email: '',
-    password: '',
-  };
-
-  const [formData, setFormData] = useState(initialFormData);
+  const {handleSubmitLogin,formDataLogin,setFormDataLogin}=useContext(contextApi);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormData((prevFormData) => ({
+    setFormDataLogin((prevFormData) => ({
       ...prevFormData,
       [id]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    // Now you can use these email and password values for authentication or other actions
-    console.log('Email:', formData.email);
-    console.log('Password:', formData.password);
-
-    // Clear the input fields after form submission
-    setFormData(initialFormData);
-  };
 
   return (
     <div className='app'>
       <Card className="max-w-lg mx-auto my-16">
         <h1 className='text-center py-5 dark:text-white text-xl font-medium text-gray-900'>Sign In</h1>
-        <form className="flex max-w-lg flex-col gap-4" onSubmit={handleSubmit}>
+        <form className="flex max-w-lg flex-col gap-4" onSubmit={handleSubmitLogin}>
           <div className="space-y-6">
             <div>
               <div className="mb-2 block">
@@ -42,7 +29,7 @@ const LoginPage = () => {
                 id="email"
                 placeholder="name@company.com"
                 required
-                value={formData.email}
+                value={formDataLogin.email}
                 onChange={handleInputChange}
               />
             </div>
@@ -54,7 +41,7 @@ const LoginPage = () => {
                 id="password"
                 type="password"
                 required
-                value={formData.password}
+                value={formDataLogin.password}
                 onChange={handleInputChange}
               />
             </div>

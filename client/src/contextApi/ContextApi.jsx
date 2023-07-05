@@ -24,23 +24,44 @@ export const contextApi=createContext();
        
         try{
           const res=await axios.post("register",formDataRegister);
-          
-          setToken(res.data.data.token);
-          setUser(res.data.data.user);
+         
+          setToken(res?.data.token);
+          setUser(res?.data.user);
 
           setFormDataRegister(initialFormDataRegister);
         }catch(err){
-          setErrMsg(err.response.data.errors);
+          setErrMsg(err.response?.data.errors);
         }    
     
       };
 
       //Login Form
+      const initialFormDataLogin = {
+        email: '',
+        password: '',
+      };    
+      const [formDataLogin, setFormDataLogin] = useState(initialFormDataLogin);
 
+      const handleSubmitLogin = async(e) => {
+        e.preventDefault();
+            try{
+          const res=await axios.post("login",formDataLogin);
+          console.log(res.data)
+          
+          setToken(res?.data.token);
+          setUser(res?.data.user);
+
+          
+          setFormDataLogin(initialFormDataLogin);
+        }catch(err){
+          setErrMsg(err.response?.data.errors);
+        }  
+        
+      };
+      
       console.log(errMsg)
 
-
-    return <contextApi.Provider value={{handleSubmitRegister,formDataRegister,setFormDataRegister}}>{children}</contextApi.Provider>
+    return <contextApi.Provider value={{user,token,handleSubmitRegister,formDataRegister,setFormDataRegister,handleSubmitLogin,formDataLogin,setFormDataLogin}}>{children}</contextApi.Provider>
 }
 
 export default ContextProvider;
