@@ -11,11 +11,11 @@ export default function AddStudent() {
       <div className='mt-10 flex justify-center'>
         <Button onClick={() => props.setOpenModal('form-elements')}>Add Student </Button>
       </div>
-      <Modal show={props.openModal === 'form-elements'} size="md" popup onClose={() => props.setOpenModal(undefined)}>
+      <Modal show={props.openModal === 'form-elements'} size="xl" popup onClose={() => props.setOpenModal(undefined)}>
         <Modal.Header />
         <Modal.Body>
           <div className="space-y-6">
-            <h3 className="text-xl font-medium text-gray-900 dark:text-white">Add Student</h3>
+            <h3 className="text-xl font-medium text-gray-900 dark:text-white text-center">Add Student</h3>
             <div>
               <div className="mb-2 block">
                 <Label htmlFor="name" value="Name" />
