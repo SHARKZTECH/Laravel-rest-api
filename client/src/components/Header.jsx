@@ -1,7 +1,12 @@
 'use client';
 import { Dropdown, Navbar,Avatar, DarkThemeToggle } from 'flowbite-react';
+import { useContext } from 'react';
+import { contextApi } from './../contextApi/ContextApi';
 
 export default function Header() {
+  const {user}=useContext(contextApi);
+
+  console.log(user)
   return (
     <Navbar
       fluid
@@ -20,10 +25,10 @@ export default function Header() {
         >
           <Dropdown.Header>
             <span className="block text-sm">
-              Bonnie Green
+              {user?.name}
             </span>
             <span className="block truncate text-sm font-medium">
-              name@flowbite.com
+              {user?.email}
             </span>
           </Dropdown.Header>
           <Dropdown.Item>
