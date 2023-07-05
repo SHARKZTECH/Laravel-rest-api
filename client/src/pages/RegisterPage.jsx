@@ -1,7 +1,11 @@
 'use client';
 import { Button, Card, Checkbox, Label, TextInput} from 'flowbite-react';
+import { useContext } from 'react';
+import {contextApi} from '../contextApi/ContextApi';
 
 export default function RegisterPage() {
+  const {name}=useContext(contextApi);
+  console.log(name)
   return (
     <Card
     className="max-w-sm"

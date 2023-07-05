@@ -6,13 +6,15 @@ import Students from './components/Students';
 import RegisterPage from './pages/RegisterPage';
 import UpdateStudent from './components/UpdateStudent';
 import FooterComponent from './components/FooterComponent';
+import  ContextProvider  from './contextApi/ContextApi';
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
+    <div className='container mx-auto'> 
+    <ContextProvider>
     <Flowbite className='w-full'>
       <Header/>
       <DarkThemeToggle />
@@ -21,6 +23,8 @@ function App() {
       <UpdateStudent/>
       <FooterComponent/>
     </Flowbite>
+    </ContextProvider>
+    </div>
     </>
   )
 }
