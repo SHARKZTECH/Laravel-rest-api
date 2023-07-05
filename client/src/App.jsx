@@ -8,6 +8,7 @@ import RegisterPage from './pages/RegisterPage';
 import FooterComponent from './components/FooterComponent';
 import  ContextProvider  from './contextApi/ContextApi';
 import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Routes>            
             <Route exact path='/' element={<HomePage/>}/>
             <Route path='/register' element={<RegisterPage/>}/>
+            <Route path='/login' element={<LoginPage/>}/>
 
           </Routes>
 

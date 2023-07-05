@@ -71,28 +71,16 @@ export default function RegisterPage() {
                 type="password"
               />
             </div>
-            <div className="flex items-center gap-2">
-              <Checkbox id="agree" />
-              <Label
-                className="flex"
-                htmlFor="agree"
-              >
-                <p>
-                  I agree with the 
-                </p>
-                <div
-                  className="text-cyan-600 hover:underline dark:text-cyan-500"
-                  href="/forms"
-                >
-                  <p>
-                    terms and conditions
-                  </p>
-                </div>
-              </Label>
-            </div>
+          
             <Button type="submit">
               Register new account
             </Button>
+            <div className="flex justify-between text-sm font-medium text-gray-500 dark:text-gray-300">
+              Already registered?&nbsp;
+              <a href="/login" className="text-cyan-700 hover:underline dark:text-cyan-500">
+                Login 
+              </a>
+            </div>
           </form>
           </Card>
       </div>

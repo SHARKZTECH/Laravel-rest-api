@@ -1,12 +1,12 @@
 import React from 'react'
 import Students from '../components/Students'
-import UpdateStudent from '../components/UpdateStudent'
+import AddStudent from '../components/AddStudent'
 
 const HomePage = () => {
   return (
     <div className='container mx-auto app mt-16'>
         <Students/>
-        <UpdateStudent/>
+        <AddStudent/>
     </div>
   )
 }
