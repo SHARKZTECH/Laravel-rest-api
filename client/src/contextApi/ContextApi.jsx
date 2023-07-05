@@ -1,49 +1,46 @@
 import { createContext,useState,useRef } from "react";
 import axios from "axios";
-axios.defaults.baseURL="";
+axios.defaults.baseURL="http://localhost:8000/api/";
 
 
 export const contextApi=createContext();
 
  const ContextProvider=({children})=>{
+  const [errMsg,setErrMsg]=useState(null);
+  const [user,setUser]=useState(null);
+  const [token,setToken]=useState("4|UEzJkXq0ID2Jomils8vBmqEmCX3MV7WTWcamcQkn");
 
     //Register Form
-    const initialFormData = {
-        username: '',
+    const initialFormDataRegister = {
+        name: '',
         email: '',
         password: '',
-        repeatPassword: '',
+        password_confirmation: '',
       };    
-      const formDataRef = useRef(initialFormData);    
-      const [formData, setFormData] = useState(initialFormData);
+      const [formDataRegister, setFormDataRegister] = useState(initialFormDataRegister); 
     
-      const handleInputChange = (e) => {
-        const { id, value } = e.target;
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          [id]: value,
-        }));
-      };
-    
-      const handleSubmit = (e) => {
+      const handleSubmitRegister = async (e) => {
         e.preventDefault();    
-        // Access the input values from the formData object
-        const { username, email, password, repeatPassword } = formData;
+       
+        try{
+          const res=await axios.post("register",formDataRegister);
+          
+          setToken(res.data.data.token);
+          setUser(res.data.data.user);
+
+          setFormDataRegister(initialFormDataRegister);
+        }catch(err){
+          setErrMsg(err.response.data.errors);
+        }    
     
-        // Now you can use these variables or update the context with them if needed
-        console.log('Username:', username);
-        console.log('Email:', email);
-        console.log('Password:', password);
-        console.log('Repeat Password:', repeatPassword);
-    
-        // Perform any other actions you need on form submission
-    
-        // Step 4: Clear the input fields after form submission
-        setFormData(initialFormData);
       };
 
+      //Login Form
 
-    return <contextApi.Provider value={{handleInputChange,handleSubmit,formData}}>{children}</contextApi.Provider>
+      console.log(errMsg)
+
+
+    return <contextApi.Provider value={{handleSubmitRegister,formDataRegister,setFormDataRegister}}>{children}</contextApi.Provider>
 }
 
 export default ContextProvider;

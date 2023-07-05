@@ -1,10 +1,18 @@
 import React, { useState, useRef } from 'react';
 import { Button, Card, Label, TextInput } from 'flowbite-react';
 import { useContext } from 'react';
-import { contextApi } from './../contextApi/ContextApi';
+import { contextApi } from '../contextApi/contextApi';
 
 export default function RegisterPage() {
-  const { handleInputChange,handleSubmit,formData} = useContext(contextApi);
+  const { handleSubmitRegister,formDataRegister,setFormDataRegister} = useContext(contextApi);
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormDataRegister((prevFormData) => ({
+      ...prevFormData,
+      [id]: value,
+    }));
+  };
 
 
 
@@ -12,18 +20,18 @@ export default function RegisterPage() {
     <div className='app'>
       <Card className="max-w-lg mx-auto my-16">
         <h1 className='text-center py-5 dark:text-white text-xl font-bold'>Register</h1>
-        <form className="flex max-w-lg flex-col gap-4" onSubmit={handleSubmit}>
+        <form className="flex max-w-lg flex-col gap-4" onSubmit={handleSubmitRegister}>
           <div>
             <div className="mb-2 block">
               <Label htmlFor="username" value="Your username" />
             </div>
             <TextInput
-              id="username"
+              id="name"
               placeholder="username"
               required
               shadow
               type="text"
-              value={formData.username}
+              value={formDataRegister.name}
               onChange={handleInputChange}
             />
           </div>
@@ -37,7 +45,7 @@ export default function RegisterPage() {
               required
               shadow
               type="email"
-              value={formData.email}
+              value={formDataRegister.email}
               onChange={handleInputChange}
             />
           </div>
@@ -50,7 +58,7 @@ export default function RegisterPage() {
               required
               shadow
               type="password"
-              value={formData.password}
+              value={formDataRegister.password}
               onChange={handleInputChange}
             />
           </div>
@@ -59,11 +67,11 @@ export default function RegisterPage() {
               <Label htmlFor="repeatPassword" value="Repeat password" />
             </div>
             <TextInput
-              id="repeatPassword"
+              id="password_confirmation"
               required
               shadow
               type="password"
-              value={formData.repeatPassword}
+              value={formDataRegister.password_confirmation}
               onChange={handleInputChange}
             />
           </div>
