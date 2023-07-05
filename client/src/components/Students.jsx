@@ -1,22 +1,26 @@
 'use client';
 
 import { Table } from 'flowbite-react';
+import { useContext } from 'react';
+import { contextApi } from '../contextApi/contextApi';
 
 export default function Students() {
+   const {students} =useContext(contextApi);
+
   return (
     <Table striped hoverable>
       <Table.Head>
         <Table.HeadCell>
-          Product name
+          Name
         </Table.HeadCell>
         <Table.HeadCell>
-          Color
+          Course
         </Table.HeadCell>
         <Table.HeadCell>
-          Category
+          Email
         </Table.HeadCell>
         <Table.HeadCell>
-          Price
+          Phone
         </Table.HeadCell>
         <Table.HeadCell>
           <span className="sr-only">
@@ -25,130 +29,34 @@ export default function Students() {
         </Table.HeadCell>
       </Table.Head>
       <Table.Body className="divide-y">
-        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-            Apple MacBook Pro 17"
-          </Table.Cell>
-          <Table.Cell>
-            Sliver
-          </Table.Cell>
-          <Table.Cell>
-            Laptop
-          </Table.Cell>
-          <Table.Cell>
-            $2999
-          </Table.Cell>
-          <Table.Cell>
-            <a
-              className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-              href="/tables"
-            >
-              <p>
-                Edit
-              </p>
-            </a>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-            <p>
-              Microsoft Surface Pro
-            </p>
-          </Table.Cell>
-          <Table.Cell>
-            White
-          </Table.Cell>
-          <Table.Cell>
-            Laptop PC
-          </Table.Cell>
-          <Table.Cell>
-            $1999
-          </Table.Cell>
-          <Table.Cell>
-            <a
-              className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-              href="/tables"
-            >
-              <p>
-                Edit
-              </p>
-            </a>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-            Magic Mouse 2
-          </Table.Cell>
-          <Table.Cell>
-            Black
-          </Table.Cell>
-          <Table.Cell>
-            Accessories
-          </Table.Cell>
-          <Table.Cell>
-            $99
-          </Table.Cell>
-          <Table.Cell>
-            <a
-              className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-              href="/tables"
-            >
-              <p>
-                Edit
-              </p>
-            </a>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-            <p>
-              Google Pixel Phone
-            </p>
-          </Table.Cell>
-          <Table.Cell>
-            Gray
-          </Table.Cell>
-          <Table.Cell>
-            Phone
-          </Table.Cell>
-          <Table.Cell>
-            $799
-          </Table.Cell>
-          <Table.Cell>
-            <a
-              className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-              href="/tables"
-            >
-              <p>
-                Edit
-              </p>
-            </a>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-            Apple Watch 5
-          </Table.Cell>
-          <Table.Cell>
-            Red
-          </Table.Cell>
-          <Table.Cell>
-            Wearables
-          </Table.Cell>
-          <Table.Cell>
-            $999
-          </Table.Cell>
-          <Table.Cell>
-            <a
-              className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-              href="/tables"
-            >
-              <p>
-                Edit
-              </p>
-            </a>
-          </Table.Cell>
-        </Table.Row>
+        {
+        students?.map(student=>(
+          <Table.Row key={student.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {student.name}
+            </Table.Cell>
+            <Table.Cell>
+            {student.course}
+            </Table.Cell>
+            <Table.Cell>
+            {student.email}
+            </Table.Cell>
+            <Table.Cell>
+            {student.phone}
+            </Table.Cell>
+            <Table.Cell>
+              <a
+                className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
+                href="/tables"
+              >
+                <p>
+                  Edit
+                </p>
+              </a>
+            </Table.Cell>
+          </Table.Row>
+        ))}
+
       </Table.Body>
     </Table>
   )
