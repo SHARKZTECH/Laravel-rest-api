@@ -1,28 +1,34 @@
 import { useState } from 'react'
+import {  Flowbite } from 'flowbite-react';
+import {Route,Routes,BrowserRouter} from "react-router-dom"
+
 import './App.css'
-import { DarkThemeToggle, Flowbite } from 'flowbite-react';
 import Header from './components/Header';
-import Students from './components/Students';
 import RegisterPage from './pages/RegisterPage';
-import UpdateStudent from './components/UpdateStudent';
 import FooterComponent from './components/FooterComponent';
 import  ContextProvider  from './contextApi/ContextApi';
+import HomePage from './pages/HomePage';
 
 
 function App() {
 
   return (
     <>
-    <div className='container mx-auto'> 
+    <div className=''> 
     <ContextProvider>
-    <Flowbite className='w-full'>
-      <Header/>
-      <DarkThemeToggle />
-      <Students/>
-      <RegisterPage/>
-      <UpdateStudent/>
-      <FooterComponent/>
-    </Flowbite>
+      <BrowserRouter>
+        <Flowbite>
+          <Header/>
+
+          <Routes>            
+            <Route exact path='/' element={<HomePage/>}/>
+            <Route path='/register' element={<RegisterPage/>}/>
+
+          </Routes>
+
+          <FooterComponent/>
+        </Flowbite>
+      </BrowserRouter>
     </ContextProvider>
     </div>
     </>

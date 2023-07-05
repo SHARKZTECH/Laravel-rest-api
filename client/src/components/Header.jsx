@@ -1,5 +1,5 @@
 'use client';
-import { Dropdown, Navbar,Avatar } from 'flowbite-react';
+import { Dropdown, Navbar,Avatar, DarkThemeToggle } from 'flowbite-react';
 
 export default function Header() {
   return (
@@ -12,7 +12,7 @@ export default function Header() {
           Laravel React
         </span>
       </Navbar.Brand>
-
+       <DarkThemeToggle/>
       <div className="flex md:order-2">
         <Dropdown
           inline
@@ -43,6 +43,7 @@ export default function Header() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
+
         <Navbar.Link
           active
           href="/"
@@ -58,11 +59,12 @@ export default function Header() {
           Services
         </Navbar.Link>
         <Navbar.Link href="#">
-          Pricing
+          Login
         </Navbar.Link>
-        <Navbar.Link href="#">
-          Contact
+        <Navbar.Link href="/register">
+          Register
         </Navbar.Link>
+
       </Navbar.Collapse>
     </Navbar>
   )
