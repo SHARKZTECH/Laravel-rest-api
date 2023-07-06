@@ -1,4 +1,4 @@
-import { createContext,useState,useRef } from "react";
+import { createContext,useState,useRef, useEffect } from "react";
 import {useNavigate} from "react-router-dom"
 import axios from "axios";
 axios.defaults.baseURL="http://localhost:8000/api/";
@@ -13,6 +13,14 @@ export const contextApi=createContext();
   const [token,setToken]=useState("4|UEzJkXq0ID2Jomils8vBmqEmCX3MV7WTWcamcQkn");
   const [students,setStudents]=useState(null);
 
+    const getUserToken=()=>{
+      let user=window.localStorage.getItem("user") ? JSON.parse(window.localStorage.getItem("user")):null;
+      let token=window.localStorage.getItem("token");
+      if(token){
+        setUser(user);
+        setToken(token);
+      }
+    }
     //Register Form
     const initialFormDataRegister = {
         name: '',
@@ -30,6 +38,9 @@ export const contextApi=createContext();
          
           setToken(res?.data.token);
           setUser(res?.data.user);
+
+          window.localStorage.setItem("token",res?.data.token);
+          window.localStorage.setItem("user",JSON.stringify(res?.data.user));
 
           setFormDataRegister(initialFormDataRegister);
           navigation("/");
@@ -55,6 +66,8 @@ export const contextApi=createContext();
           setToken(res?.data.token);
           setUser(res?.data.user);
 
+          window.localStorage.setItem("token",res?.data.token);
+          window.localStorage.setItem("user",JSON.stringify(res?.data.user));
           
           setFormDataLogin(initialFormDataLogin);
           navigation("/");
@@ -80,7 +93,7 @@ export const contextApi=createContext();
       console.log(errMsg)
 
     return <contextApi.Provider
-     value={{user,token,students,getStudents,
+     value={{user,token,students,getStudents,getUserToken,
       handleSubmitRegister,formDataRegister,setFormDataRegister,
       handleSubmitLogin,formDataLogin,setFormDataLogin}}
      >{children}</contextApi.Provider>

@@ -6,7 +6,7 @@ import { contextApi } from './../contextApi/ContextApi';
 export default function Header() {
   const {user}=useContext(contextApi);
 
-  console.log(user)
+  // console.log(user)
   return (
     <Navbar
       fluid

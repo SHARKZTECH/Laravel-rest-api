@@ -4,10 +4,12 @@ import AddStudent from '../components/AddStudent'
 import { contextApi } from '../contextApi/contextApi'
 
 const HomePage = () => {
-  const {getStudents} =useContext(contextApi);
+  const {getStudents,getUserToken} =useContext(contextApi);
 
   useEffect(()=>{
     getStudents();
+    getUserToken();
+
   },[])
   return (
     <div className='container mx-auto app mt-16'>
