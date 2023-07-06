@@ -10,7 +10,7 @@ export const contextApi=createContext();
   const navigation=useNavigate();
   const [errMsg,setErrMsg]=useState(null);
   const [user,setUser]=useState(null);
-  const [token,setToken]=useState("4|UEzJkXq0ID2Jomils8vBmqEmCX3MV7WTWcamcQkn");
+  const [token,setToken]=useState(null);
   const [students,setStudents]=useState(null);
 
     const getUserToken=()=>{
@@ -88,12 +88,32 @@ export const contextApi=createContext();
         }  
       }
 
+      const addStudents=async(student)=>{
+        try{
+          const config={
+            headers:{
+                'Accept':'application/json',
+                'Content-type':'application/json',
+                "Authorization":`Bearer ${token}`
+            }
+        } 
+          const res=await axios.post("students",student,config);
+          // setStudents(res.data?.students);  
+
+          console.log(res)
+          
+          getStudents();
+        }catch(err){
+          setErrMsg(err.response?.data.errors);
+        }  
+      }
+
       
       
       console.log(errMsg)
 
     return <contextApi.Provider
-     value={{user,token,students,getStudents,getUserToken,
+     value={{user,token,students,getStudents,getUserToken,addStudents,
       handleSubmitRegister,formDataRegister,setFormDataRegister,
       handleSubmitLogin,formDataLogin,setFormDataLogin}}
      >{children}</contextApi.Provider>

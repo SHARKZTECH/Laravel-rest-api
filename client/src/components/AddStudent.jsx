@@ -1,7 +1,9 @@
 import { Button, Label, Modal, TextInput } from 'flowbite-react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
+import { contextApi } from '../contextApi/contextApi';
 
 export default function AddStudent() {
+  const {addStudents}=useContext(contextApi);
   const [openModal, setOpenModal] = useState();
   const props = { openModal, setOpenModal };
 
@@ -20,14 +22,13 @@ export default function AddStudent() {
       course: courseInputRef.current.value,
       phone: phoneInputRef.current.value,
     };
-    
-    console.log(inputData);
+
+    addStudents(inputData);    
 
     nameInputRef.current.value=null;
     emailInputRef.current.value=null;
     courseInputRef.current.value=null;
     phoneInputRef.current.value=null;
-
 
     props.setOpenModal(undefined);
   };
