@@ -16,8 +16,8 @@ function App() {
   return (
     <>
     <div className=''> 
-    <ContextProvider>
       <BrowserRouter>
+    <ContextProvider>
         <Flowbite>
           <Header/>
 
@@ -30,8 +30,8 @@ function App() {
 
           <FooterComponent/>
         </Flowbite>
-      </BrowserRouter>
     </ContextProvider>
+      </BrowserRouter>
     </div>
     </>
   )

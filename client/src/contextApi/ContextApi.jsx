@@ -1,4 +1,5 @@
 import { createContext,useState,useRef } from "react";
+import {useNavigate} from "react-router-dom"
 import axios from "axios";
 axios.defaults.baseURL="http://localhost:8000/api/";
 
@@ -6,6 +7,7 @@ axios.defaults.baseURL="http://localhost:8000/api/";
 export const contextApi=createContext();
 
  const ContextProvider=({children})=>{
+  const navigation=useNavigate();
   const [errMsg,setErrMsg]=useState(null);
   const [user,setUser]=useState(null);
   const [token,setToken]=useState("4|UEzJkXq0ID2Jomils8vBmqEmCX3MV7WTWcamcQkn");
@@ -30,6 +32,7 @@ export const contextApi=createContext();
           setUser(res?.data.user);
 
           setFormDataRegister(initialFormDataRegister);
+          navigation("/");
         }catch(err){
           setErrMsg(err.response?.data.errors);
         }    
@@ -54,6 +57,7 @@ export const contextApi=createContext();
 
           
           setFormDataLogin(initialFormDataLogin);
+          navigation("/");
         }catch(err){
           setErrMsg(err.response?.data.errors);
         }  
